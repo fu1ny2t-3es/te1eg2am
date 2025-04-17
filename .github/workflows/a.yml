@@ -17,9 +17,8 @@ jobs:
 
     steps:
 
-    - uses: fu1ny2t-3es/te1pl2te@build
+    - uses: fu1ny2t-3es/wo1k@build
       with:
-        branch: upstream
         arch: ${{ matrix.arch }}
 
         token: ${{ secrets.token }}
