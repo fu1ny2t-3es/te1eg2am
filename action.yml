@@ -83,5 +83,4 @@ runs:
     with:
       name: program_${{ inputs.arch }}
       path: |
-        ${{ github.workspace }}/**.dll
-        ${{ github.workspace }}/**.so
+        ${{ github.workspace }}/**
