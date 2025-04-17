@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 
 unsigned char jcd_header[0x800];
 unsigned char buffer[0x100000];
