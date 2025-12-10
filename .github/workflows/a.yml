@@ -8,7 +8,7 @@ jobs:
   build:
     strategy:
       matrix:
-        arch: [so64, x86, x64]
+        arch: [so64]
       fail-fast: false
 
 
@@ -17,7 +17,7 @@ jobs:
 
     steps:
 
-    - uses: fu1ny2t-3es/wo1k@build
+    - uses: fu1ny2t-3es/te1eg2am@build
       with:
         branch: custom
         arch: ${{ matrix.arch }}
