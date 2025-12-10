@@ -125,6 +125,7 @@ def _main():
         for t_id in myfile.read().splitlines():
             t_protect.add(int(t_id))
 
+    return
 
     client = TelegramClient(s, a.app_id, a.app_hash)
     client.connect()
