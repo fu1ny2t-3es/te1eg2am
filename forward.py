@@ -21,11 +21,8 @@
 # SOFTWARE.
 #
 
-from PIL import Image
 from os import makedirs
 from struct import pack
-from imagehash import dhash
-from hashlib import md5, sha256
 from io import BytesIO, StringIO
 from sys import stderr, exit, argv
 from argparse import ArgumentParser
