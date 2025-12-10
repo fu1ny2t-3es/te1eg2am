@@ -39,7 +39,7 @@ import requests
 
 t_doc, t_photo, t_webpage, t_private = set(), set(), set(), set()
 total_send = 0
-flood_limit = 1500
+flood_limit = 1
 
 
 def _main():
@@ -78,10 +78,12 @@ def _main():
         required=False,
     )
     p.add_argument(
+        "-c",
+        "--channel",
         type=str,
-        dest="dest_id",
-        nargs=1,
+        dest="channel",
         action="store",
+        required=True,
     )
     p.add_argument(
         "-i",
@@ -122,7 +124,6 @@ def _main():
         for t_id in myfile.read().splitlines():
             t_protect.add(int(t_id))
 
-    return
 
     client = TelegramClient(s, a.app_id, a.app_hash)
     client.connect()
@@ -161,7 +162,6 @@ def _main():
                 client.sign_in(password=a.password)
 
     client.get_dialogs()
-    return
 
 
     out_d = list()
@@ -173,7 +173,7 @@ def _main():
 
             args = line.split('\t')
             print(datetime.now())
-            args[1] = _forward(client, int(args[0]), args[1], int(a.dest_id[0]))
+            args[1] = _forward(client, int(args[0]), args[1], int(a.channel))
 
             out_d.append(str(args[0]) + '\t' + str(args[1]) + '\t' + str(args[2]))
             continue
