@@ -39,7 +39,7 @@ import requests
 
 t_doc, t_photo, t_webpage, t_private = set(), set(), set(), set()
 total_send = 0
-flood_limit = 1
+flood_limit = 1500
 
 
 def _main():
