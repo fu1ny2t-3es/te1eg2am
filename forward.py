@@ -37,7 +37,7 @@ from datetime import datetime
 import requests
 
 
-t_doc, t_photo, t_webpage, t_private = set(), set(), set(), set()
+t_doc, t_photo, t_webpage, t_protect = set(), set(), set(), set()
 total_send = 0
 flood_limit = 1500
 
@@ -196,7 +196,7 @@ def _main():
             print(line, file=myfile)  # Python 3.x
 
     with open('protect.txt', 'w') as myfile:
-        for line in t_private:
+        for line in t_protect:
             print(line, file=myfile)  # Python 3.x
 
 
@@ -244,7 +244,7 @@ def _forward(client, channel_id, start_id, dest_id):
 
 
             if i.noforwards == True:
-                t_private.add(channel.id + '\t' + str(i.id))
+                t_protect.add(channel_id + '\t' + str(i.id))
                 continue
 
 
