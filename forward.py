@@ -244,7 +244,7 @@ def _forward(client, channel_id, start_id, dest_id):
 
 
             if i.noforwards == True:
-                t_protect.add(channel_id + '\t' + str(i.id))
+                t_protect.add(str(channel_id) + '\t' + str(i.id))
                 continue
 
 
