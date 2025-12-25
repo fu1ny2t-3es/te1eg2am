@@ -121,8 +121,8 @@ def _main():
             t_webpage.add(int(t_id))
 
     with open('protect.txt', 'r') as myfile:
-        for t_id in myfile.read().splitlines():
-            t_protect.add(int(t_id))
+        for line in myfile.read().splitlines():
+            t_protect.add(line)
 
 
     client = TelegramClient(s, a.app_id, a.app_hash)
