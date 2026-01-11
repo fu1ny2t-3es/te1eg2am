@@ -203,7 +203,7 @@ def _main():
 def _forward(client, channel_id, start_id, dest_id):
     global total_send
 
-    last_id = start_id
+    last_id = int(start_id)
     flood = False
 
     try:
@@ -281,10 +281,12 @@ def _forward(client, channel_id, start_id, dest_id):
 
     except Exception as e:
         print(e)
+
         last_id -= 1
 
         if flood == True:
             total_send = flood_limit
+
 
     return last_id
 
