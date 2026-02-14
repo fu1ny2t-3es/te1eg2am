@@ -219,9 +219,15 @@ def _forward(client, channel_id, start_id, dest_id):
 
             topic_id = 9530   # File
 
+            # print(i)
+            # print(i.media)
 
             if not i.media:
-                continue
+                if not i.message:
+                    continue
+                if not 'https://' in i.message:
+                    continue
+                topic_id = 9529
 
             elif type(i.media) is MessageMediaDocument:
                 if int(i.media.document.id) in t_doc:
