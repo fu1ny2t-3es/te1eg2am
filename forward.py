@@ -29,7 +29,7 @@ from argparse import ArgumentParser
 from telethon import functions
 from telethon.sync import TelegramClient
 from telethon.tl.types import PeerUser, PeerChannel, PeerChat
-from telethon.tl.types import Channel, MessageMediaDocument, MessageMediaPhoto, MessageMediaWebPage, MessageMediaPoll
+from telethon.tl.types import Channel, MessageMediaDocument, MessageMediaPhoto, MessageMediaWebPage, MessageMediaPoll, MessageFwdHeader
 from os.path import join, exists, isdir, expanduser, expandvars
 import time
 import random
@@ -206,6 +206,8 @@ def _forward(client, channel_id, start_id, dest_id):
     last_id = int(start_id)
     flood = False
 
+    COVER_BOT_USERNAMES = { 5605632845 }  # forwardcoverbot new
+
     try:
         o = 0
         for i in client.iter_messages(channel_id, reverse=True, offset_id=int(start_id)):
@@ -221,6 +223,12 @@ def _forward(client, channel_id, start_id, dest_id):
 
             # print(i)
             # print(i.media)
+
+
+            for bot_username in COVER_BOT_USERNAMES:
+                if i.forward and i.forward.sender_id == bot_username:
+                    topic_id = 142078
+
 
             if not i.media:
                 if not i.message:
