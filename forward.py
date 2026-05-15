@@ -206,7 +206,7 @@ def _forward(client, channel_id, start_id, dest_id):
     last_id = int(start_id)
     flood = False
 
-    COVER_BOT_USERNAMES = { 5605632845 }  # forwardcoverbot new
+    COVER_BOT_USERNAMES = { 5605632845, 432668551, 7210051051 }  # forwardcoverbot new, forwardscoverbot, simple forward cover bot
 
     try:
         o = 0
