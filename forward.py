@@ -256,6 +256,13 @@ def _forward(client, channel_id, start_id, dest_id):
             elif type(i.media) is MessageMediaPoll:
                 continue
 
+            elif type(i.media) is MessageMediaContact:
+                continue
+
+            elif type(i.media) is MessageMediaPaidMedia:
+                continue
+
+
 
             if i.noforwards == True:
                 t_protect.add(str(channel_id) + '\t' + str(i.id))
