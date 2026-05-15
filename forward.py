@@ -29,7 +29,7 @@ from argparse import ArgumentParser
 from telethon import functions
 from telethon.sync import TelegramClient
 from telethon.tl.types import PeerUser, PeerChannel, PeerChat
-from telethon.tl.types import Channel, MessageMediaDocument, MessageMediaPhoto, MessageMediaWebPage, MessageMediaPoll, MessageFwdHeader
+from telethon.tl.types import Channel, MessageMediaDocument, MessageMediaPhoto, MessageMediaWebPage, MessageMediaPoll, MessageFwdHeader, MessageMediaContact, MessageMediaPaidMedia
 from os.path import join, exists, isdir, expanduser, expandvars
 import time
 import random
