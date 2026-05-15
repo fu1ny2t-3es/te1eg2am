@@ -302,7 +302,6 @@ def _forward(client, channel_id, start_id, dest_id):
 
     except Exception as e:
         print(e)
-        traceback.print_exc()
 
         last_id -= 1
 
