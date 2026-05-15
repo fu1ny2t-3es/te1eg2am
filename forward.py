@@ -225,11 +225,6 @@ def _forward(client, channel_id, start_id, dest_id):
             # print(i.media)
 
 
-            for bot_username in COVER_BOT_USERNAMES:
-                if i.forward and i.forward.sender_id == bot_username:
-                    topic_id = 142078
-
-
             if not i.media:
                 if not i.message:
                     continue
@@ -262,6 +257,10 @@ def _forward(client, channel_id, start_id, dest_id):
             elif type(i.media) is MessageMediaPaidMedia:
                 continue
 
+
+            for bot_username in COVER_BOT_USERNAMES:
+                if i.forward and i.forward.sender_id == bot_username:
+                    topic_id = 142078
 
 
             if i.noforwards == True:
