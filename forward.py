@@ -166,18 +166,24 @@ def _main():
 
 
     out_d = list()
+
     with open('channels.txt', 'r', encoding='utf-8') as myfile:
         for line in myfile.read().splitlines():
-            if total_send >= flood_limit:       # Flood warning
-                out_d.append(line)
+            try:
+                if total_send >= flood_limit:       # Flood warning
+                    out_d.append(line)
+                    continue
+
+                args = line.split('\t')
+                print(datetime.now())
+                args[1] = _forward(client, int(args[0]), args[1], int(a.channel))
+
+                out_d.append(str(args[0]) + '\t' + str(args[1]) + '\t' + str(args[2]))
                 continue
 
-            args = line.split('\t')
-            print(datetime.now())
-            args[1] = _forward(client, int(args[0]), args[1], int(a.channel))
-
-            out_d.append(str(args[0]) + '\t' + str(args[1]) + '\t' + str(args[2]))
-            continue
+            except Exception as e:
+                print(e)
+                traceback.print_exc()
 
 
     with open('channels.txt', 'w', encoding='utf-8') as myfile:
@@ -302,7 +308,7 @@ def _forward(client, channel_id, start_id, dest_id):
 
     except Exception as e:
         print(e)
-        print(traceback.format_exc())
+        traceback.print_exc()
 
         last_id -= 1
 
