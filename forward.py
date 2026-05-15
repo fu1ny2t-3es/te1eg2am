@@ -35,6 +35,7 @@ import time
 import random
 from datetime import datetime
 import requests
+import traceback
 
 
 t_doc, t_photo, t_webpage, t_protect = set(), set(), set(), set()
@@ -301,6 +302,7 @@ def _forward(client, channel_id, start_id, dest_id):
 
     except Exception as e:
         print(e)
+        traceback.print_exc()
 
         last_id -= 1
 
