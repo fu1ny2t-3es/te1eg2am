@@ -234,18 +234,18 @@ def _forward(client, channel_id, start_id, dest_id):
                 topic_id = 9529
 
             elif type(i.media) is MessageMediaDocument:
-                if int(i.media.document.id) in t_doc:
+                if not i.media.document.id or int(i.media.document.id) in t_doc:
                     continue
                 if i.media.video == True:
                     topic_id = 9532
 
             elif type(i.media) is MessageMediaPhoto:
-                if int(i.media.photo.id) in t_photo:
+                if not i.media.photo.id or int(i.media.photo.id) in t_photo:
                     continue
                 topic_id = 9531
 
             elif type(i.media) is MessageMediaWebPage:
-                if int(i.media.webpage.id) in t_webpage:
+                if not i.media.webpage.id or int(i.media.webpage.id) in t_webpage:
                     continue
                 topic_id = 9529
 
