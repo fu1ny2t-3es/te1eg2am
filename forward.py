@@ -30,6 +30,7 @@ from telethon import functions
 from telethon.sync import TelegramClient
 from telethon.tl.types import PeerUser, PeerChannel, PeerChat
 from telethon.tl.types import Channel, MessageMediaDocument, MessageMediaPhoto, MessageMediaWebPage, MessageMediaPoll, MessageFwdHeader, MessageMediaContact, MessageMediaPaidMedia
+from telethon.errors.rpcerrorlist import ChatForwardsRestrictedError
 from os.path import join, exists, isdir, expanduser, expandvars
 import time
 import random
@@ -286,12 +287,18 @@ def _forward(client, channel_id, start_id, dest_id):
 
 
             flood = True
-            client(functions.messages.ForwardMessagesRequest(
-                from_peer=i.peer_id,
-                id=[i.id],
-                to_peer=dest_id,
-                top_msg_id=topic_id,
-            ))
+
+            try:
+                client(functions.messages.ForwardMessagesRequest(
+                    from_peer=i.peer_id,
+                    id=[i.id],
+                    to_peer=dest_id,
+                    top_msg_id=topic_id,
+                ))
+            except ChatForRestrictedError:
+                print("Content in this chat is protected.")
+                return
+    
             flood = False
 
 
