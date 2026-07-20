@@ -30,7 +30,6 @@ from telethon import functions
 from telethon.sync import TelegramClient
 from telethon.tl.types import PeerUser, PeerChannel, PeerChat
 from telethon.tl.types import Channel, MessageMediaDocument, MessageMediaPhoto, MessageMediaWebPage, MessageMediaPoll, MessageFwdHeader, MessageMediaContact, MessageMediaPaidMedia
-from telethon.errors.rpcerrorlist import ChatForwardsRestrictedError
 from os.path import join, exists, isdir, expanduser, expandvars
 import time
 import random
@@ -208,6 +207,7 @@ def _main():
             print(line, file=myfile)  # Python 3.x
 
 
+
 def _forward(client, channel_id, start_id, dest_id):
     global total_send
 
@@ -288,18 +288,12 @@ def _forward(client, channel_id, start_id, dest_id):
 
             flood = True
 
-            try:
-                client(functions.messages.ForwardMessagesRequest(
-                    from_peer=i.peer_id,
-                    id=[i.id],
-                    to_peer=dest_id,
-                    top_msg_id=topic_id,
-                ))
-            except ChatForRestrictedError:
-                print("Content in this chat is protected.")
-                return
-    
-            flood = False
+            client(functions.messages.ForwardMessagesRequest(
+                from_peer=i.peer_id,
+                id=[i.id],
+                to_peer=dest_id,
+                top_msg_id=topic_id,
+            ))
 
 
             if type(i.media) is MessageMediaDocument:
@@ -315,7 +309,7 @@ def _forward(client, channel_id, start_id, dest_id):
 
     except Exception as e:
         print(e)
-        traceback.print_exc()
+        # traceback.print_exc()
 
         last_id -= 1
 
